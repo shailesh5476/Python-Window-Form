@@ -4,7 +4,6 @@ r = tkinter.Tk()
 
 r.title("Software Engineer Shailesh Kumar Gupta")
 r.geometry("1500x1000")
-r.configure(bg="Green")
 
 def connectdb(): return
 pymysql.connect(host="localhost",database="student",user="root",password="",port=3306)
