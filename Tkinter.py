@@ -1,4 +1,5 @@
 import tkinter
+import tkinter.messagebox as m
 import pymysql
 r = tkinter.Tk()
 
@@ -6,6 +7,44 @@ r.title("Software Engineer Shailesh Kumar Gupta")
 r.geometry("1500x1000")
 r.configure(bg="Green")
 
+def connectdb(): 
+    return pymysql.connect(host="localhost",database="student",user="root",password="",port=3306)
+
+
+def insertdata():
+     conn=connectdb() 
+     a1=a.get() 
+     a2=b.get()
+     a3=c.get()
+     a4=d.get() 
+     a5=e.get() 
+     a6=f.get() 
+     a7=g.get()
+     a8=h.get() 
+     a9=i.get() 
+     b1=j.get() 
+     b2=k.get() 
+     b3=l.get() 
+     b4=m.get() 
+     b5=n.get() 
+     b6=o.get() 
+     b7=p.get() 
+     b8=q.get() 
+     b9=r1.get()
+     if(a1==""or a2=="" or a3=="" or a4=="" or a5=="" or a6=="" or a7=="" or a8=="" or a9=="" or b1=="" or b2=="" or b3=="" or b4=="" or b5=="" or b6=="" or b7=="" or b8=="" or b9=="" ):
+        m.showinfo("Insert Status","All Fields are Mandatory") 
+     else:
+        try:
+            conn = connectdb()
+            cur=conn.cursor() 
+            ar=(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9)
+            querty="insert into student_Details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            cur.execute(querty,ar) 
+            conn.commit()
+            m.showinfo("Insert Status","Data Inserted Successfully") 
+            conn.close()
+        except Exception as ee:
+            print("Data Not Inserted error no.420",ee)
 
 
 
@@ -121,7 +160,7 @@ r1.place(x=500, y=530)
 # Adding button into main window
 
 
-Z = tkinter.Button(r, text="Submit", bg="yellow")
+Z = tkinter.Button(r, text="Submit", bg="yellow",command=insertdata)
 Z.place(x=900, y=600)
 
 tkinter.mainloop()
