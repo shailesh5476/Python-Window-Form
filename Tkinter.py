@@ -8,11 +8,10 @@ r.geometry("1500x1000")
 r.configure(bg="sea green")
 
 def connectdb(): 
-    return pymysql.connect(host="localhost",database="student",user="root",password="",port=3306)
+    return pymysql.connect(host="localhost",database="student",user="root",password="",port=3306, charset="utf8")
 
 
-def insertdata():
-     conn=connectdb()   
+def insertdata():  
      a1=a.get() 
      a2=b.get()
      a3=c.get()
@@ -40,12 +39,13 @@ def insertdata():
             conn = connectdb()
             cur=conn.cursor() 
             ar=(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2)
-            querty="insert into student_Details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            querty="insert into student_details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             cur.execute(querty,ar) 
             conn.commit()
             m.showinfo("Insert Status","Data Inserted Successfully") 
             conn.close()
         except Exception as ee:
+            print("ERROR:", ee) 
             m.showerror("Database Error", str(ee))
 
 
