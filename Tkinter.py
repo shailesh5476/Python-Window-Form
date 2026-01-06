@@ -1,18 +1,18 @@
 import tkinter
 import tkinter.messagebox as m
-import mysql
+import pymysql
 r = tkinter.Tk()
 
 r.title("Software Engineer Shailesh Kumar Gupta")
 r.geometry("1500x1000")
-r.configure(bg="Green")
+r.configure(bg="sea green")
 
 def connectdb(): 
-    return mysql.connector.connect(host="localhost",database="student",user="root",password="",port=3306)
+    return pymysql.connector.connect(host="localhost",database="student",user="root",password="",port=3306)
 
 
 def insertdata():
-     conn=connectdb() 
+     conn=connectdb()   
      a1=a.get() 
      a2=b.get()
      a3=c.get()
@@ -31,14 +31,16 @@ def insertdata():
      b7=p.get() 
      b8=q.get() 
      b9=r1.get()
-     if(a1==""or a2=="" or a3=="" or a4=="" or a5=="" or a6=="" or a7=="" or a8=="" or a9=="" or b1=="" or b2=="" or b3=="" or b4=="" or b5=="" or b6=="" or b7=="" or b8=="" or b9=="" ):
-        m.showinfo("Insert Status","All Fields are Mandatory") 
+     c1 = r2.get()
+     c2 = r3.get()
+     if(a1==""or a2=="" or a3=="" or a4=="" or a5=="" or a6=="" or a7=="" or a8=="" or a9=="" or b1=="" or b2=="" or b3=="" or b4=="" or b5=="" or b6=="" or b7=="" or b8=="" or b9=="" or c1 == "" or c2 == ""):
+        m.showinfo("Insert Status","All Fields are Mandatory , Data is not present so then fill the 'NA'") 
      else:
         try:
             conn = connectdb()
             cur=conn.cursor() 
-            ar=(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9)
-            querty="insert into student_Details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            ar=(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2)
+            querty="insert into student_Details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             cur.execute(querty,ar) 
             conn.commit()
             m.showinfo("Insert Status","Data Inserted Successfully") 
@@ -102,6 +104,13 @@ Photo.place(x=20, y=500)
 Tumb = tkinter.Label(r, text="Thumb Image -:")
 Tumb.place(x=20, y=530)
 
+Tumb1 = tkinter.Label(r, text="Student Signature -:")
+Tumb1.place(x=20, y=560)
+
+Tumb2 = tkinter.Label(r, text="Father Signature -:")
+Tumb2.place(x=20, y=590)
+
+
 # entry box created
 
 a = tkinter.Entry(width=30)
@@ -157,6 +166,12 @@ q.place(x=500, y=500)
 
 r1 = tkinter.Entry(width=30)
 r1.place(x=500, y=530)
+
+r2 = tkinter.Entry(width=30)
+r2.place(x=500, y=560)
+
+r3 = tkinter.Entry(width=30)
+r3.place(x=500, y=590)
 # Adding button into main window
 
 
