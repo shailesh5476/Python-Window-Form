@@ -8,7 +8,7 @@ r.geometry("1500x1000")
 r.configure(bg="sea green")
 
 def connectdb(): 
-    return pymysql.connector.connect(host="localhost",database="student",user="root",password="",port=3306)
+    return pymysql.connect(host="localhost",database="student",user="root",password="",port=3306)
 
 
 def insertdata():
@@ -25,7 +25,7 @@ def insertdata():
      b1=j.get() 
      b2=k.get() 
      b3=l.get() 
-     b4=m.get() 
+     b4=m1.get() 
      b5=n.get() 
      b6=o.get() 
      b7=p.get() 
@@ -34,7 +34,7 @@ def insertdata():
      c1 = r2.get()
      c2 = r3.get()
      if(a1==""or a2=="" or a3=="" or a4=="" or a5=="" or a6=="" or a7=="" or a8=="" or a9=="" or b1=="" or b2=="" or b3=="" or b4=="" or b5=="" or b6=="" or b7=="" or b8=="" or b9=="" or c1 == "" or c2 == ""):
-        m.showinfo("Insert Status","All Fields are Mandatory , Data is not present so then fill the 'NA'") 
+        m.showwarning("Insert Status","All Fields are Mandatory , Data is not present so then fill the 'NA'") 
      else:
         try:
             conn = connectdb()
@@ -46,7 +46,7 @@ def insertdata():
             m.showinfo("Insert Status","Data Inserted Successfully") 
             conn.close()
         except Exception as ee:
-            print("Data Not Inserted error no.420",ee)
+            m.showerror("Database Error", str(ee))
 
 
 
@@ -149,8 +149,8 @@ k.place(x=500, y=320)
 l = tkinter.Entry(width=30)
 l.place(x=500, y=350)
 
-m = tkinter.Entry(width=30)
-m.place(x=500, y=380)
+m1 = tkinter.Entry(width=30)
+m1.place(x=500, y=380)
 
 n = tkinter.Entry(width=30)
 n.place(x=500, y=410)
@@ -178,4 +178,4 @@ r3.place(x=500, y=590)
 Z = tkinter.Button(r, text="Submit", bg="yellow",command=insertdata)
 Z.place(x=900, y=600)
 
-tkinter.mainloop()
+r.mainloop()
