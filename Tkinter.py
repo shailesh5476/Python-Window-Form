@@ -3,7 +3,7 @@ import tkinter.messagebox as m
 import pymysql
 r = tkinter.Tk()
 
-r.title("Software Engineer Shailesh Kumar Gupta")
+r.title("Registration Form")
 r.geometry("1500x1000")
 r.configure(bg="sea green")
 
@@ -32,14 +32,15 @@ def insertdata():
      b9=r1.get()
      c1 = r2.get()
      c2 = r3.get()
-     if(a1==""or a2=="" or a3=="" or a4=="" or a5=="" or a6=="" or a7=="" or a8=="" or a9=="" or b1=="" or b2=="" or b3=="" or b4=="" or b5=="" or b6=="" or b7=="" or b8=="" or b9=="" or c1 == "" or c2 == ""):
+     c3 = r4.get()
+     if(a1==""or a2=="" or a3=="" or a4=="" or a5=="" or a6=="" or a7=="" or a8=="" or a9=="" or b1=="" or b2=="" or b3=="" or b4=="" or b5=="" or b6=="" or b7=="" or b8=="" or b9=="" or c1 == "" or c2 == "" or c3 == ""):
         m.showwarning("Insert Status","All Fields are Mandatory , Data is not present so then fill the 'NA'") 
      else:
         try:
             conn = connectdb()
             cur=conn.cursor() 
-            ar=(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2)
-            querty="insert into student_details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            ar=(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3)
+            querty="insert into student_details values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             cur.execute(querty,ar) 
             conn.commit()
             m.showinfo("Insert Status","Data Inserted Successfully") 
@@ -77,38 +78,41 @@ m_n.place(x=20, y=230)
 man = tkinter.Label(r, text="Student Adhaar Number -:")
 man.place(x=20, y=260)
 
-mmn = tkinter.Label(r, text="Contact Number -:")
+mmn = tkinter.Label(r, text="Gmail -:")
 mmn.place(x=20, y=290)
 
+mmn = tkinter.Label(r, text="Contact Number -:")
+mmn.place(x=20, y=320)
+
 fa_n = tkinter.Label(r, text="Student Address name -:")
-fa_n.place(x=20, y=320)
+fa_n.place(x=20, y=350)
 
 ms_n1= tkinter.Label(r, text="Student Street Adddress name -:")
-ms_n1.place(x=20, y=350)
+ms_n1.place(x=20, y=380)
 
 ms_n = tkinter.Label(r, text="Student Entry date -:")
-ms_n.place(x=20, y=380)
+ms_n.place(x=20, y=410)
 
 fees = tkinter.Label(r, text="Addmission Fees -:")
-fees.place(x=20, y=410)
+fees.place(x=20, y=440)
 
 quali = tkinter.Label(r, text="Highest Qualification Document -:")
-quali.place(x=20, y=440)
+quali.place(x=20, y=470)
 
 adhaar = tkinter.Label(r, text="Adhaar Card Document -:")
-adhaar.place(x=20, y=470)
+adhaar.place(x=20, y=500)
 
 Photo = tkinter.Label(r, text="Student Photo -:")
-Photo.place(x=20, y=500)
+Photo.place(x=20, y=530)
 
 Tumb = tkinter.Label(r, text="Thumb Image -:")
-Tumb.place(x=20, y=530)
+Tumb.place(x=20, y=560)
 
 Tumb1 = tkinter.Label(r, text="Student Signature -:")
-Tumb1.place(x=20, y=560)
+Tumb1.place(x=20, y=590)
 
 Tumb2 = tkinter.Label(r, text="Father Signature -:")
-Tumb2.place(x=20, y=590)
+Tumb2.place(x=20, y=620)
 
 
 # entry box created
@@ -172,6 +176,9 @@ r2.place(x=500, y=560)
 
 r3 = tkinter.Entry(width=30)
 r3.place(x=500, y=590)
+
+r4 = tkinter.Entry(width=30)
+r4.place(x=500, y=620)
 # Adding button into main window
 
 
